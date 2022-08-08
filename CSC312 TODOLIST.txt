@@ -5,5 +5,9 @@ TODO: 8 August 2022
 ---How to Git: Clone, Push, Pull, commit
 --KAMVA(CREATE BRANCHES)
 
+--TESTING 123
+--GIT PUSH
+--456
+
 -Research on what language to use(Backend, FrontEnd)
 -----DEADLINE: 12 AUGUST--------
