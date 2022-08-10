@@ -23,6 +23,11 @@ CAPSTONE PROJECT CSC312 2022
 # Wiedaad
 -
 -
+<p>
+  <a>
+    <img src="https://github.com/username/repository/login-page-test.png">
+  </a>
+</p>
 # Checklist:
 - [ ] null
 
