@@ -25,14 +25,9 @@ CAPSTONE PROJECT CSC312 2022
 -
 <p>
   <a>
-    <img src="login page test.jpg" width=500 alt="login">
+    <img src="login page test.jpg" width=850 alt="test example">
   </a>
 </p>
-# Checklist:
-- [ ] null
-
-# Main Elements
-- null 
 
 
 
