@@ -25,7 +25,7 @@ CAPSTONE PROJECT CSC312 2022
 -
 <p>
   <a>
-    <img src="https://github.com/username/repository/login page test.jpg" width=500 alt="login">
+    <img src="login page test.jpg" width=500 alt="login">
   </a>
 </p>
 # Checklist:
