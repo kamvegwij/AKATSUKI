@@ -1,6 +1,7 @@
 # AKATSUKI
 CAPSTONE PROJECT CSC312 2022
 <h1 align="center"> CAPSTONE PROJECT TERM 3 </h1>
+<p>Implemented in Flask (backend) and ... (frontend) </p>
 <h3 align="center">Documentation</h3>
 
 <h2> Login Page Test </h2>
