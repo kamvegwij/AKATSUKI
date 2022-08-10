@@ -23,6 +23,8 @@ CAPSTONE PROJECT CSC312 2022
 # Wiedaad
 -
 -
+<h2> Login Page Test </h2>
+<p> Made using HTML and CSS </p>
 <p>
   <a>
     <img src="login page test.jpg" width=850 alt="test example">
