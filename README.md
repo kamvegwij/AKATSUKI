@@ -1,29 +1,8 @@
 # AKATSUKI
 CAPSTONE PROJECT CSC312 2022
 <h1 align="center"> CAPSTONE PROJECT TERM 3 </h1>
-<h3 align="center">General Information</h3>
+<h3 align="center">Documentation</h3>
 
-<h1 align="center"> ROLES </h1>
-<form>
-# Kamve
-- 
--
-# Neo
--
--
-# Naledi
--
--
-# Lisa
--
--
-# Nkosinathi
--
--
-# Wiedaad
--
--
-</form> 
 <h2> Login Page Test </h2>
 <p> Made using HTML and CSS </p>
 <p>
