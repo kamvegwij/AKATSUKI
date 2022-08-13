@@ -1,0 +1,23 @@
+Week 1(15 - 19 August)
+-Learn Flask(Backend team)
+-SQL Basics(Backend team)
+-UML Diagram(All)
+ +Use-case
+ +Class Diagrams(Basic)
+-SE Process model(All)
+-Figma prototype(FrontEnd)
+-JavaScript(FrontEnd)
+-HTML(FrontEnd)
+-CSS(FrontEnd)
+
+Week 2(22 - 27 August)
+-Continue Week1
+-Dummy Project(MVP)
+-Continue Flask
+-
+
+Week 3(29 August - 2 Sept)
+
+Week 4(5 - 9 September)
+
+Due date: 12 September
