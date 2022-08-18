@@ -8,9 +8,9 @@ CAPSTONE PROJECT CSC312 2022
 <p> Made using HTML and CSS </p>
 <p>
   <a>
-    <img src="login page test.jpg" width=850 alt="test example"><br><br>
+    <img src="login page test.jpg" width=850 alt="test example"><br>
     
-    <img src="test_layout.jpeg" width=850 alt="full layout">
+    <img src="test_layout.jpeg" width=950 alt="full layout">
   </a>
 </p>
 
