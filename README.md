@@ -8,11 +8,19 @@ CAPSTONE PROJECT CSC312 2022
 <p> Made using HTML and CSS </p>
 <p>
   <a>
-    <img src="login page test.jpg" width=850 alt="test example"><br>
-    
+    <img src="login page test.jpg" width=850 alt="test example">
+  </a>
+</p>
+<h2> Demo Full Layout </h2>
+<p> Made using Paint windows</p>
+<p>
+  <a>
     <img src="test_layout.jpeg" width=950 alt="full layout">
   </a>
 </p>
+
+
+
 
 
 
