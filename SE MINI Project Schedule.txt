@@ -14,7 +14,7 @@ Week 2(22 - 27 August)
 -Continue Week1
 -Dummy Project(MVP)
 -Continue Flask
--
+-Finalise team roles
 
 Week 3(29 August - 2 Sept)
 
