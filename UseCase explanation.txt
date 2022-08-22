@@ -45,7 +45,7 @@ Customer use-cases:
   -Customer can also cancel ticket.
   -Customer will be able to receive cancel information via email or phone number.
   
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 Admin use cases:
 1)Store user details:
   -Admin stores customer profile details once a profile has been created.
@@ -53,6 +53,40 @@ Admin use cases:
   -Admin stores movie details i.e name of movie, number of seats taken, number of seats available, movie times.
   -Admin includes connects to database to facilitate the storing of movie and customer details.
  
+------------------------------------------------------------------------------------------
+BookingSystem use case:
+1)Checkout:
+ -Once customer has provided their banking details
+ -Customer banking details is passed on to the Booking System.
+ -Booking system performs the checkout simulation via hardcode
+          OR
+ -Stripe API is used to perform the checkout functionality.
+
+2)View Booking:
+ -Once customer has booked a movie.
+ -Booking System contains functionality that will enable customer;
+  +To recieve booking info via email
+       OR 
+  +To recieve booking info via phone number
+  -Booking system includes the Twillio API or smpt library to perform the above
+
+3)Track Movie Seats:
+ -Booking system tracks number of booked seats for a single day i.e
+  +Booking System increases number of seatsbooked of either movie1, movie2 or movie3
+  +Similarly if customer decided to cancel booking, booking system decreases number of seats booked of either movie1, movie2, movie 3.
+ -Th above results is passed to the Admin for storage.
+
+4)Del Booking:
+ -If customer deletes booking, booking system increases number of available seats.
+ -Info above is passed to the admin to update database.
+ -Booking system sends customer cancellation email or message.
+ 
+
+
+  
+
+
+
 
 
  
