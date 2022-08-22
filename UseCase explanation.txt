@@ -1,6 +1,6 @@
 Actors: Customer, Cinema Admin, BookingSystem
 
-----------------------------
+----------------------------------------------------------------------------------
 Customer use-cases:
 1)Create Profile:
  -If customer not included in the database, a profile must be created.
@@ -45,7 +45,17 @@ Customer use-cases:
   -Customer can also cancel ticket.
   -Customer will be able to receive cancel information via email or phone number.
   
-  
+-------------------------------------------------------------------------------
+Admin use cases:
+1)Store user details:
+  -Admin stores customer profile details once a profile has been created.
+   +Admin also stores booking info customer.
+  -Admin stores movie details i.e name of movie, number of seats taken, number of seats available, movie times.
+  -Admin includes connects to database to facilitate the storing of movie and customer details.
+ 
+
+
+ 
   
 
   
