@@ -1,0 +1,51 @@
+Actors: Customer, Cinema Admin, BookingSystem
+
+----------------------------
+Customer use-cases:
+1)Create Profile:
+ -If customer not included in the database, a profile must be created.
+  Creating their profile will include entering their personal details i.e
+  name, surname, email, phone number. 
+
+ -All customer variables should be validated before
+  a customer profile is created  check phone number format
+
+ -Once customer profile is complete, customer details are stored.
+
+2)Login/Logout:
+ -If customer profile available, they can login. If customer provides incorrect details,
+  a login display error will occur or they will be directed to create account if their details 
+  not in storage.
+
+ -Customer can also logout.
+
+3)BookMovie:
+ -Once customer logged in they can book any of the three movies.
+ -Booking involves:
+  +Choosing a movie
+  +Number of seats for the required movie
+  +BookingID will be allocated for each seat booked for a movie
+  
+
+4)Payment:
+  -Once customer has finished booking, they proceed to the checkout page.
+  -This involves providing your banking details.
+  -Payment simulation occurs OR we can use stripeAPI https://www.programmableweb.com/api/stripe
+
+5)View Booking:
+ -Once payment is complete, customer recieves booking info
+ -Customer can choose whether to recieve booking info via email or phonenumber
+ -TwillioAPI: can be used to send customer booking info https://www.twilio.com via phonenumber
+ -smptlib: can be used to send customer customer booking info via email using smtplib(Python library)
+ 
+
+
+6)Delete booking:
+  -Provided the customer has booked and has been issued with a ticket.
+  -Customer can also cancel ticket.
+  -Customer will be able to receive cancel information via email or phone number.
+  
+  
+  
+
+  
