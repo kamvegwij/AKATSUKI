@@ -1,7 +1,4 @@
 
-from marshmallow import Schema, fields, post_load, ValidationError, validates, validate
-import phonenumbers
-
 '''
 Cinema Online booking Customer class
 -Used to capture customer information
@@ -16,30 +13,43 @@ class Customer:
         self.__noOfSeatsBooked = noOfSeatsBooked
         self.__movie = movieSelected
         self.__customerID = 0
+        self.__isBooked = False
+
 
 
     '''Getter functions'''
+    @property
     def getCustName(self):
         return self.__name
 
+    @property
     def getCustSurname(self):
         return self.__surname
 
+    @property
     def getCustEmail(self):
         return self.__email
 
+    @property
     def getCustContactNo(self):
         return self.__contactNo
 
+    @property
     def getNoOfSeatsBooked(self):
         return self.__noOfSeatsBooked
 
+    @property
     def getMovieSelected(self):
         return self.__movie
 
+    @property
     def generateCustID(self):
         self.__customerID += 1
         return self.__customerID
+
+    @property
+    def getBookingStatus(self):
+        return self.__isBooked
 
     '''Setter functions'''
     def setCustName(self, name):
@@ -61,51 +71,12 @@ class Customer:
         self.__movie = movie
 
 
-'''Customer Validation class
--Used to validate customer input
-'''
-class CustomerSchema(Schema):
-    name = fields.String()
-    surname = fields.String()
-    contactNo = fields.String()
-    noOfBookSeats = fields.Integer()
-    email = fields.Email()
-    movie = fields.String()
+    '''This function will enable customer to view and receive provided
+       the customer has booked.
+    '''
 
-    @validates('contactNo')
-    def validate_contactNo(self, contactNo):
-        phone_number = phonenumbers.parse(contactNo)
-        isContactNoPossible = phonenumbers.is_valid_number(phone_number)
-        return isContactNoPossible
-
-    @post_load
-    def create_customer(self, data, **kwargs):
-        return Customer(**data)
-
-
-
-'''Testing class'''
-customer_data = {}
-
-customer_data['name'] = input("Enter your name: ")
-customer_data['surname'] = input("Enter your surname: ")
-customer_data['email'] = input("Enter your email: ")
-customer_data['contact_no'] = input("Enter your phone numbers: ")
-customer_data['noOfSeatsBooked'] = input("Number of seats booked: ")
-customer_data['movie_selected'] = input("Enter movie: ")
-customer_data['customer_id'] = input("Enter customer id: ")
-
-try:
-    schema = CustomerSchema()
-    customer = schema.load(customer_data)
-
-    results = schema.dump(customer)
-    print(results)
-except ValidationError as err:
-    print(err)
-    print(err.valid_data)
-
-
+    def viewBookingInfo(self):
+        pass
 
 
 

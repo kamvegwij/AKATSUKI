@@ -1,0 +1,5 @@
+Static function to generate customer number
+-Generates random number if not included in the database
+
+customer input validation happens in class first, before data used in Flask post.
+validation also happens in the WTForms using flask
