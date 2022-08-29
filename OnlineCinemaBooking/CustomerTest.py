@@ -24,7 +24,6 @@ customer = Customer(
 )
 
 notification = Notification(customer)
-#customer.sms_notification()
 notification.sms_notification()
 
 
