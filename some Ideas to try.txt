@@ -3,3 +3,35 @@ Static function to generate customer number
 
 customer input validation happens in class first, before data used in Flask post.
 validation also happens in the WTForms using flask
+
+Customer class:
+ -Private variables..
+ -getter functions
+ -setter functions
+
+ +messageNotification
+
+
+
+CLASSES SO FAR:
+-Customer
+-Booking
+-Admin
+-Notification
+-Payment??
+-Movie??
+
+
+----Templates------
+/Home->
+-Button get started, signup, login
+/Create Account ->
+/Login
+/Movies 
+-Show1, show2 , show2
+-choose how many seats
+-Remove booking
+-Book
+-Proceed to checkout
+/Checkout
+/ShowDetails

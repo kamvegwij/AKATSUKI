@@ -1,73 +1,83 @@
 
+
 '''
 Cinema Online booking Customer class
 -Used to capture customer information
 '''
 
 class Customer:
-    def __init__(self, name, surname, email, contactNo, noOfSeatsBooked, movieSelected):
+    def __init__(self, name, surname, email, contact_no, seats_booked, movie_selected, password):
+        #personal details
         self.__name = name
         self.__surname = surname
-        self.__contactNo = contactNo
+        self.__contact_no = contact_no
+        self.__password = password
         self.__email = email
-        self.__noOfSeatsBooked = noOfSeatsBooked
-        self.__movie = movieSelected
-        self.__customerID = 0
-        self.__isBooked = False
+        self.__no_seats_booked = seats_booked
+        self.__movie = movie_selected
+        self.__customer_id = 0
+        self.__is_booked = True
 
 
 
     '''Getter functions'''
     @property
-    def getCustName(self):
+    def get_cust_name(self):
         return self.__name
 
     @property
-    def getCustSurname(self):
+    def get_cust_surname(self):
         return self.__surname
 
     @property
-    def getCustEmail(self):
+    def get_cust_email(self):
         return self.__email
 
     @property
-    def getCustContactNo(self):
-        return self.__contactNo
+    def get_cust_contact_no(self):
+        return self.__contact_no
 
     @property
-    def getNoOfSeatsBooked(self):
-        return self.__noOfSeatsBooked
+    def get_password(self):
+        return self.__password
 
     @property
-    def getMovieSelected(self):
+    def get_no_of_seats_booked(self):
+        return self.__no_seats_booked
+
+    @property
+    def get_movie_selected(self):
         return self.__movie
 
     @property
-    def generateCustID(self):
-        self.__customerID += 1
-        return self.__customerID
+    def generate_cust_ID(self):
+        self.__customer_id += 1
+        return self.__customer_id
 
     @property
-    def getBookingStatus(self):
-        return self.__isBooked
+    def get_booking_status(self):
+        return self.__is_booked
 
     '''Setter functions'''
-    def setCustName(self, name):
+    def set_cust_name(self, name):
         self.__name = name
 
-    def setCustSurname(self, surname):
+    def set_cust_surname(self, surname):
         self.__surname = surname
 
-    def setCustContact(self, contact):
-        self.__contactNo = contact
+    def set_cust_contact(self, contact):
+        self.__contact_no = contact
 
-    def setCustNoOfSeatsBooked(self, seats):
-        self.__noOfSeatsBooked = seats
+    def set_password(self, password):
+        self.__password = password
 
-    def setCustIDe(self, ID):
-        self.__customerID = ID
+    def set_seats_booked(self, seats):
+        self.__no_seats_booked = seats
 
-    def setMovieSelected(self, movie):
+    def set_cust_id(self, ID):
+        self.__customer_id = ID
+
+    def set_movie_selected(self, movie):
         self.__movie = movie
 
 
@@ -75,8 +85,26 @@ class Customer:
        the customer has booked.
     '''
 
-    def viewBookingInfo(self):
-        pass
+
+
+    '''
+    def email_notification(self):
+        if self.__is_booked:
+            with smtplib.SMTP('smtp.mail.yahoo.com') as connection:
+                connection.starttls()
+                connection.login(
+                    user="akatsukiakatsuki241@yahoo.com",
+                    password="CSC312_Term3_Mini_Project_2022"
+                )
+                connection.sendmail(
+                    from_addr="akatsukiakatsuki241@yahoo.com",
+                    to_addrs=f"{self.__email}",
+                    msg="Show will be ready in x time o clock"
+                )
+    '''
+
+
+
 
 
 

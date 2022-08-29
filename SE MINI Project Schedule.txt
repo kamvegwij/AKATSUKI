@@ -17,6 +17,10 @@ Week 2(22 - 27 August)
 -Finalise team roles
 
 Week 3(29 August - 2 Sept)
+Complete Customer class
+Complete Booking class
+Compete Admin Class
+Setup Flask Server
 
 Week 4(5 - 9 September)
 
