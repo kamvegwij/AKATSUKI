@@ -26,6 +26,7 @@ class BookingSystem:
             return f"Sorry {self.movies[self.customer.movie_selected]} seats are sold."
 
     def customer_booking_info(self):
+        pass
         
 
             
