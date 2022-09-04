@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Signup</title>
     
-    <script src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
-    <title>Login</title>
 
 </head>
 <body style=" background: url( '/static/img/background.webp' ) ">
    
-    <div class="box">
+    <div class="box2">
         <img src="{{ url_for('static', filename='/img/logo.png') }}" class="avatar">
-        <h1>LOGIN</h1>
+        <h1>SIGNUP</h1>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for msg in messages %}
@@ -22,26 +21,17 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-
-        <form action="/" method = "post">
+        <form action="", method = "post">
             <p>Username/Email</p>
             <input type="text" name="username" placeholder="Enter username/email">
             <p>Password</p> 
             <input type="password" name="password" placeholder="Enter password">
+            <p>Confirm Password</p>
+            <input type="password" name="password_conf" placeholder="Confirm password">
+            
+            <button type="submit" >Signup</button>
 
-            <br>
-            
-            <button type="submit">Login</button>
-            
-            
         </form>
-
-        <br>
-
-        <a href="/signup">
-            <button type="button">Signup</button>
-        </a>
-        
         
 
 
