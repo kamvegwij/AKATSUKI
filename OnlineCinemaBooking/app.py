@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 # the customer login table class
 class CustomerLogin(db.Model):
     # the columns in the table
-    email = db.Column(db.String(100), nullable = False, primary_key=True, unique=True)
+    email = db.Column(db.String(100), nullable = False, primary_key=True, unique=True) #username
     password = db.Column(db.String(50), nullable = False)
 
     def __init__(self, email, password):
@@ -66,7 +66,7 @@ def login():
             # password match??
             if password == user_row[1]:
             
-                return render_template('customer.html')
+                return render_template('booking.html')
             else:
                 flash('Wrong password, Please try again!')
                 return render_template('login.html');
@@ -111,8 +111,20 @@ def signup():
     
 
 
-@app.route('/home', methods=['GET', 'POST'])
-def home():
+@app.route('/booking', methods=['GET', 'POST'])
+def booking():
+    if request.method == "POST":
+         #lets generate a ticketID, an int for easier validation
+        customer_name = request.form['name']
+        customer_surname = request.form['surname']
+        movie_sel = request.form['movie']
+        date_of_pur = request.form['date'] # possibly auto fill
+
+
+        # look up of the details in the database 
+        # and format them to a list [icket_id, customer_name, customer_surname, movie_selected, date_of_purchase]
+        # !!! lookup exceptions??
+
     return render_template('customer.html')
 
 if __name__ == "__main__":
