@@ -1,113 +1,135 @@
-.body{
-    margin: 30px;
-    padding:20px;
-    background-size:cover;
-    background-position: center;
-    font-family:sans-serif;
-    
-    
-}
-.box{
-    width:320px;
-    height:550px;
-    background:#000;
-    color:#fff;
-    top:50%;
-    left:50%;
-    position:absolute;
-    transform:translate(-50%,-50%);
-    box-sizing: border-box;
-    padding:100px 30px;
-    
-}
-.box2{
-    width:320px;
-    height:600px;
-    background:#000;
-    color:#fff;
-    top:50%;
-    left:50%;
-    position:absolute;
-    transform:translate(-50%,-50%);
-    box-sizing: border-box;
-    padding:100px 30px;
-    
-}
-.avatar{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    position:absolute;
-    top:-50px;
-    left:calc(-50%,-50%);
-    
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
-    padding:70px 80px;
-
-}
-h1{
-    margin: 40px;
-    padding: 0 0 7px;
-    text-align:center;
-    font-size: 22px;
-    font-family: monospace;
-
-}
-.box p{
-    font-weight:bold;
-}
-.box2 p{
-    font-weight:bold;
+* {
+  box-sizing: border-box;
 }
 
-.box input{
-    width:100%;
-    margin-bottom:10px;
-    
-}
-.box2 input{
-    width:100%;
-    margin-bottom:10px;
-    
-}
-.box button[type="submit"], button[type='button']{
-    cursor: pointer;
-    background-color: rgb(142, 6, 6);
-    border: none;
-    text-align: center;
-    color: white;
-    padding: 8px 30px;
-    text-decoration: none;
-    font-family: monospace;
-}
-.box2 button[type="submit"]{
-    cursor: pointer;
-    background-color: rgb(142, 6, 6);
-    border: none;
-    text-align: center;
-    color: white;
-    padding: 8px 30px;
-    text-decoration: none;
-    font-family: monospace;
+body{
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Lato", sans-serif;
+  margin: 0;
 }
 
-.box input[type="text"], input[type="password"]{
-    border:none;
-    border-bottom: 1px solid gray;
-    background:transparent;
-    outline:none;
-    height:40px;
-}
-.box2 input[type="text"], input[type="password"]{
-    border:none;
-    border-bottom: 1px solid gray;
-    background:transparent;
-    outline:none;
-    height:40px;
+.initcontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-input{
-    color:maroon;
-    
+img{
+  max-width: 100%;
 }
 
+.image{
+  flex-basis: 40%;
+}
+
+.inittext{
+  padding: 0px 20px 50px 20px;
+  margin-top: 0px;
+  font-size: 55px;
+  font-family: sans-serif;
+}
+
+.movie-container{
+  margin: 20px 0;
+}
+
+.movie-container select{
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.container{
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+.seat{
+  background-color: #444451;
+  height: 18px;
+  width: 21px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.seat.selected{
+  background-color: green;
+}
+
+.seat.sold{
+  background-color: white;
+}
+
+.seat:nth-of-type(2){
+  margin-right: 18px;
+}
+
+.seat:nth-last-of-type(2){
+  margin-left: 18px;
+}
+
+.seat:not(.sold):hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.showcase .seat:not(.sold):hover{
+  cursor: default;
+  transform: scale(1);
+}
+
+.showcase{
+  background-color: rgba(0, 0, 0, 1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.showcase li{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.showcase li small{
+  margin-left: 2px;
+}
+
+.row{
+  display: flex;
+}
+
+.screen{
+  background-color: white;
+  height: 120px;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+p.text{
+  margin: 5px 0;
+}
+
+p.text span{
+  color: green;
+}
