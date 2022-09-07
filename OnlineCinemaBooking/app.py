@@ -66,7 +66,7 @@ def login():
             # password match??
             if password == user_row[1]:
             
-                return render_template('booking.html')
+                return render_template('index.html')
             else:
                 flash('Wrong password, Please try again!')
                 return render_template('login.html');
@@ -115,10 +115,10 @@ def signup():
 def booking():
     if request.method == "POST":
          #lets generate a ticketID, an int for easier validation
-        customer_name = request.form['name']
-        customer_surname = request.form['surname']
-        movie_sel = request.form['movie']
-        date_of_pur = request.form['date'] # possibly auto fill
+        customer_name = ""
+        customer_surname = ""
+        movie_sel = ""
+        date_of_pur = ""
 
 
         # look up of the details in the database 
