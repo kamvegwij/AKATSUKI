@@ -127,5 +127,22 @@ def booking():
 
     return render_template('customer.html')
 
+#Allows users to view the movie the selected and all the seat numbers/number of tickets
+@app.route('/selected_movie', methods=['GET', 'POST'])
+def selected_movie():
+    pass
+
+#Implement stripe API to enable checkout functionality
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    pass
+
+#Displays message to confirm success of the booking
+#Else show error
+@app.route('/success', methods=['GET', 'post'])
+def success():
+    pass
+
+
 if __name__ == "__main__":
     app.run(debug=True)
