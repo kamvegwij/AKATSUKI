@@ -6,17 +6,12 @@ Cinema Online booking Customer class
 '''
 
 class Customer:
-    def __init__(self, name, surname, email, contact_no, seats_booked, movie_selected, password):
-        #personal details
+    def __init__(self, name, surname, email, movie_selected):
+        # personal details
         self.__name = name
         self.__surname = surname
-        self.__contact_no = contact_no
-        self.__password = password
         self.__email = email
-        self.__no_seats_booked = seats_booked
         self.__movie = movie_selected
-        self.__customer_id = 0
-        self.__is_booked = True
 
 
 

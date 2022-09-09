@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
+    <title>App</title>
+</head>
+<body>
+      <div class="container">
+
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p>{{msg}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+        <div class="screen"></div>
+    
+        <div class="row">
+          <div class="seat">A1</div>
+          <div class="seat">A2</div>
+          <div class="seat">A3</div>
+          <div class="seat">A4</div>
+          <div class="seat">A5</div>
+          <div class="seat">A6</div>
+          <div class="seat">A7</div>
+          <div class="seat">A8</div>
+        </div>
+    
+        <div class="row">
+          <div class="seat">B1</div>
+          <div class="seat">B2</div>
+          <div class="seat">B3</div>
+          <div class="seat">B4</div>
+          <div class="seat">B5</div>
+          <div class="seat">B6</div>
+          <div class="seat">B7</div>
+          <div class="seat">B8</div>
+        </div>
+    
+        <div class="row">
+          <div class="seat">C1</div>
+          <div class="seat">C2</div>
+          <div class="seat">C3</div>
+          <div class="seat">C4</div>
+          <div class="seat">C5</div>
+          <div class="seat">C6</div>
+          <div class="seat">C7</div>
+          <div class="seat">C8</div>
+        </div>
+    
+        <div class="row">
+          <div class="seat">D1</div>
+          <div class="seat">D2</div>
+          <div class="seat">D3</div>
+          <div class="seat">D4</div>
+          <div class="seat">D5</div>
+          <div class="seat">D6</div>
+          <div class="seat">D7</div>
+          <div class="seat">D8</div>
+        </div>
+      </div>
+
+    <div class="seat-container">
+        <label>Please select your seat</label>
+        <select  id="seat" onchange="seatselect();">
+          <option>A1</option>
+          <option>A2</option>
+          <option>A3</option>
+          <option>A4</option>
+          <option>A5</option>
+          <option>A6</option>
+          <option>A7</option>
+          <option>A8</option>
+
+          <option>B1</option>
+          <option>B2</option>
+          <option>B3</option>
+          <option>B4</option>
+          <option>B5</option>
+          <option>B6</option>
+          <option>B7</option>
+          <option>B8</option>
+
+          <option>C1</option>
+          <option>C2</option>
+          <option>C3</option>
+          <option>C4</option>
+          <option>C5</option>
+          <option>C6</option>
+          <option>C7</option>
+          <option>C8</option>
+
+          <option>D1</option>
+          <option>D2</option>
+          <option>D3</option>
+          <option>D4</option>
+          <option>D5</option>
+          <option>D6</option>
+          <option>D7</option>
+          <option>D8</option>
+        </select>
+
+        <br>
+        <br>
+        Selected seat
+        <form action="" method="post">
+          <input type="text" value="A1" name="seat" id="selected">
+
+          <input type="submit" value="Select" id="bookButton">
+        </form>
+      </div>
+
+
+    <script>
+      function seatselect() {
+        var d = document.getElementById('seat');
+        var display_text = d.options[d.selectedIndex].text;
+        document.getElementById('selected').value = display_text;
+      }
+    </script>
+</body>
+</html>

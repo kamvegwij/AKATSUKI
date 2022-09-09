@@ -4,95 +4,134 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akatsuki</title>
+  <title >Akatsuki</title>
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css') }}">
   
   
 </head>
 <body>
+
+
+      <!--bar-->
+    <div class="main">
+      <nav class="First">
+        <ol>
+          <li><a href="">Cancel a ticket</a></li>
+        </ol>
+      </nav>
+    </div>
+    <!-- end of bar-->
+
+
+
   <div class="initcontainer">
     <div class="image">
       <img src="{{ url_for('static', filename='/img/akatsuki.jpg') }}" >
     </div>
     <div class="inittext">
-      <p>AKATSUKI CINEMAS</p>
+      <p style="font-size: 30px; font-family: monospace;">AKATSUKI CINEMA</p>
     </div>
   </div>
+
   <div class="movie-container">
-    <label>Select a movie:</label>
-    <select id="movie">
-      <option value="100">Jujutsu Kaisen: Zero (R100)</option>
-      <option value="90">Demon Slayer: Mugen Train (R90)</option>
-      <option value="95">Dragon Ball Super Movie (R95)</option>
-      <option value="110">Boku no Hero: World Hero's Mission (R110)</option>
-    </select>
+
+    <ul class="movies">
+      <li>
+        <div class="movie"></div>
+
+        {% if movie1[1] == '0' %}
+          <img class='mv' src="{{ url_for('static', filename='/img/movie1.jpg') }}" alt="">
+          <br>
+          <br>
+          Jujutsu Kaisen: Zero
+
+        {% else %}
+
+          <a href="/home/seatselection/jkz" id="mov" style="color: rgb(217, 214, 214); text-decoration: none;">
+            <img class='mv' src="{{ url_for('static', filename='/img/movie1.jpg') }}" alt="">
+            <br>
+            <br>
+            Jujutsu Kaisen: Zero
+          </a>
+        {% endif %}
+
+        <br>
+        <br>
+        Price: R100.00
+        <br>
+        <br>
+        Seats sold: {{ movie1[2] }}
+        <br>
+        <br>
+        Seats available: {{ movie1[1] }}
+        <br>
+        <br>
+        Time: 14h00
+      </li>
+      <li>
+        <div class="movie"></div>
+
+        {% if movie2[1] == '0' %}
+          <img class='mv' src="{{ url_for('static', filename='/img/movie2.jpg') }}" alt="">
+          <br>
+        Boku no Hero: World <br>Hero's Mission
+        {% else %}
+          <a href="/home/seatselection/bnh" style="color: rgb(217, 214, 214); text-decoration: none;">
+            <img class='mv' src="{{ url_for('static', filename='/img/movie2.jpg') }}" alt="">
+            <br>
+            Boku no Hero: World <br>Hero's Mission
+          </a>
+        {% endif %}
+
+        <br>
+        <br>
+        Price: R110.00
+        <br>
+        <br>
+        Seats sold: {{ movie2[2] }}
+        <br>
+        <br>
+        Seats available: {{ movie2[1] }}
+        <br>
+        <br>
+        Time: 17h00
+      </li>
+      <li>
+        <div class="movie"></div>
+
+        {% if movie3[1] == '0' %}
+          <img  class='mv' src="{{ url_for('static', filename='/img/movie3.jpg') }}" alt="">
+          <br>
+          <br>
+          Dragon Ball Super Movie
+        {% else %}
+          <a href="/home/seatselection/dbs" style="color: rgb(217, 214, 214); text-decoration: none;">
+            <img  class='mv' src="{{ url_for('static', filename='/img/movie3.jpg') }}" alt="">
+            <br>
+            <br>
+            Dragon Ball Super Movie
+          </a>
+        {% endif %}
+
+        <br>
+        <br>
+        Price: R95.00
+        <br>
+        <br>
+        Seats sold: {{ movie3[2] }}
+        <br>
+        <br>
+        Seats available: {{ movie3[1] }}
+        <br>
+        <br>
+        Time: 20h00
+      </li>
+    </ul>
+
   </div>
-  
-  <ul class="showcase">
-    <li>
-      <div class="seat"></div>
-      <small>Available</small>
-    </li>
-    <li>
-      <div class="seat selected"></div>
-      <small>Selected</small>
-    </li>
-    <li>
-      <div class="seat sold"></div>
-      <small>Sold</small>
-    </li>
-  </ul>
-  <div class="container">
-    <div class="screen"></div>
 
-    <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
 
-    <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
+  <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
 
-    <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-
-    <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-  </div>
-  <form action="/booking" method = "post">
-    <p class="text"></p>
-      You have selected <span id="count">0</span> seats for a price of R<span id="total">0</span></p>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  </form>
 </body>
 </html>
