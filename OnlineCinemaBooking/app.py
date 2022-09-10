@@ -32,7 +32,7 @@ class CustomerLogin(db.Model):
         return f'{self.email}~{self.password}'
 
 
-# movies
+# movies table
 class Movies(db.Model):
     name = db.Column(db.String(100), nullable=False, primary_key=True, unique=True)
     seats_available = db.Column(db.Integer, nullable=False)
@@ -105,17 +105,20 @@ class CustomerBooking(db.Model):
     customer_name = db.Column(db.String(50), nullable = False)
     customer_surname = db.Column(db.String(50), nullable = False)
     movie_selected = db.Column(db.String(50), nullable = False)
+    seat_selected = db.Column(db.String(10), nullable = False)
 
-    def __init__(self, ticket_id, customer_name, customer_surname, movie_selected):
+    def __init__(self, ticket_id, customer_name, customer_surname, movie_selected, seat_selected):
         self.ticket_id = ticket_id
         self.customer_name = customer_name
         self.customer_surname = customer_surname
         self.movie_selected = movie_selected
+        self.seat_selected = seat_selected
 
     def __repr__(self):
-        return f'{self.ticket_id}~{self.customer_name}~{self.customer_surname}~{self.movie_selected}'
+        return f'{self.ticket_id}~{self.customer_name}~{self.customer_surname}~{self.movie_selected}~{self.seat_selected}'
 
 
+# login page
 @app.route('/', methods = ['GET', 'POST'])
 def login():
     # login
@@ -125,13 +128,12 @@ def login():
 
         # look up of the details in the database 
         # and format them to a list [username, password]
-        # !!! lookup exceptions??
         try:
             user_row = CustomerLogin.query.filter_by(email=username).all()
 
             user_row = str(user_row[0]).split('~')
 
-            # password match??
+            # check if password match?? before redirecting to home page
             if password == user_row[1]:
             
                 return redirect('/home')
@@ -148,7 +150,7 @@ def login():
     return render_template('login.html');
         
 
-
+# signup page
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
     # new user signing up
@@ -179,10 +181,11 @@ def signup():
     return render_template('signup.html')
 
 
-# home ppage where the user can select a movie
+# home page 
 @app.route('/home', methods=['GET', 'POST'])
 def index():
 
+    # query the movies database to render the no. of seat booked/available 
     try:
         movies = Movies.query.all()
     except:
@@ -197,6 +200,7 @@ def index():
 @app.route('/home/seatselection/jkz', methods=['GET', 'POST'])
 def select():
 
+    # formating seat number for easier usability e.g C5 --> [2, 5] meaning row_3 col_5
     if request.method == 'POST':
         selected_seat = str(request.form['seat'])
 
@@ -209,8 +213,10 @@ def select():
         elif selected_seat[0] == 'D':
             selected_seat = [3, int(selected_seat[1])]
 
+        # session for moving between pages with the seat variable/list
         session['seat'] = selected_seat
 
+        # seat selection (user cannot select a seat that is already selected)
         try:
             movie_seats = SeatsM1.query.all()
             movie_seats = [str(movie_seats[0]).split('~'), str(movie_seats[1]).split('~'), str(movie_seats[2]).split('~'), str(movie_seats[3]).split('~')]
@@ -231,6 +237,7 @@ def select():
 @app.route('/home/seatselection/bnh', methods=['GET', 'POST'])
 def select2():
 
+    # formating seat number for easier usability e.g C5 --> [2, 5] meaning row_3 col_5
     if request.method == 'POST':
         selected_seat = str(request.form['seat'])
 
@@ -243,8 +250,11 @@ def select2():
         elif selected_seat[0] == 'D':
             selected_seat = [3, int(selected_seat[1])]
 
+        # session for moving between pages with the seat variable/list
         session['seat'] = selected_seat
         
+
+        # seat selection (user cannot select a seat that is already selected)
         try:
             movie_seats = SeatsM2.query.all()
             movie_seats = [str(movie_seats[0]).split('~'), str(movie_seats[1]).split('~'), str(movie_seats[2]).split('~'), str(movie_seats[3]).split('~')]
@@ -266,6 +276,7 @@ def select2():
 @app.route('/home/seatselection/dbs', methods=['GET', 'POST'])
 def select3():
 
+    # formating seat number for easier usability e.g C5 --> [2, 5] meaning row_3 col_5
     if request.method == 'POST':
         selected_seat = str(request.form['seat'])
 
@@ -278,8 +289,10 @@ def select3():
         elif selected_seat[0] == 'D':
             selected_seat = [3, int(selected_seat[1])]
 
+        # session for moving between pages with the seat variable/list
         session['seat'] = selected_seat
 
+        # seat selection (user cannot select a seat that is already selected)
         try:
             movie_seats = SeatsM3.query.all()
             movie_seats = [str(movie_seats[0]).split('~'), str(movie_seats[1]).split('~'), str(movie_seats[2]).split('~'), str(movie_seats[3]).split('~')]
@@ -302,18 +315,23 @@ def checkout():
     movie_selected = "Jujutsu Kaisen: Zero"
     seat = session.get('seat')
 
+    # generate a random number for the ticket id
     ticket_id = random.randint(10000,99999)
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']
         email = request.form['email']
 
+        # Customer instance
         customer = Customer(name, surname, email, movie_selected)
 
-        cus_details = CustomerBooking(ticket_id, customer.get_cust_name, customer.get_cust_surname, customer.get_movie_selected)
+        # CustomerBooking instance to add to the database
+        cus_details = CustomerBooking(ticket_id, customer.get_cust_name, customer.get_cust_surname, customer.get_movie_selected, str(seat[0])+str(seat[1]))
 
+        # get the row to mark the seat selected with 1
         seats = SeatsM1.query.get_or_404(seat[0] + 1)
         
+        # get the column and mark the selected seat with 1
         if seat[1] == 1:
             seats.c1 = 1
         elif seat[1] == 2:
@@ -331,6 +349,7 @@ def checkout():
         elif seat[1] == 8:
             seats.c8 = 1
 
+        # query and update the number of seats sold/available for this movie
         seat_numbers = Movies.query.get_or_404(movie_selected)
         arr_seat_numbers = str(seat_numbers).split('~')
         add_s = int(arr_seat_numbers[2]) + 1
@@ -339,12 +358,13 @@ def checkout():
         seat_numbers.seats_available = sub_s
         seat_numbers.seats_sold = add_s
 
+        # add to the database and commit
         try:
             db.session.add(cus_details)
 
             db.session.commit()
 
-            return "Booked successfully. Your ticket id is " +  str(ticket_id) + " . Thank you!"
+            return render_template('thankyou.html', ticket_id=ticket_id)
         except:
             return "Error adding to the database"
         
@@ -360,18 +380,24 @@ def checkout2():
     movie_selected = "Boku no Hero: World Hero's Mission"
     seat = session.get('seat')
 
+    # generate a random number for the ticket id
     ticket_id = random.randint(10000,99999)
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']
         email = request.form['email']
 
+        # Customer instance
         customer = Customer(name, surname, email, movie_selected)
 
-        cus_details = CustomerBooking(ticket_id, customer.get_cust_name, customer.get_cust_surname, customer.get_movie_selected)
+        # # CustomerBooking instance to add to the database
+        cus_details = CustomerBooking(ticket_id, customer.get_cust_name, customer.get_cust_surname, customer.get_movie_selected, str(seat[0])+str(seat[1]))
 
+
+        # get the row to mark the seat selected with 1
         seats = SeatsM2.query.get_or_404(seat[0] + 1)
         
+        # # get the column and mark the selected seat with 1
         if seat[1] == 1:
             seats.c1 = 1
         elif seat[1] == 2:
@@ -389,6 +415,7 @@ def checkout2():
         elif seat[1] == 8:
             seats.c8 = 1
 
+        # query and update the number of seats sold/available for this movie
         seat_numbers = Movies.query.get_or_404(movie_selected)
         arr_seat_numbers = str(seat_numbers).split('~')
         add_s = int(arr_seat_numbers[2]) + 1
@@ -397,12 +424,14 @@ def checkout2():
         seat_numbers.seats_available = sub_s
         seat_numbers.seats_sold = add_s
 
+
+        # add to the database and commit
         try:
             db.session.add(cus_details)
 
             db.session.commit()
 
-            return "Booked successfully. Your ticket id is " +  str(ticket_id) + " . Thank you!"
+            return render_template('thankyou.html', ticket_id=ticket_id)
         except:
             return "Error adding to the database"
 
@@ -416,18 +445,23 @@ def checkout3():
     movie_selected = "Dragon Ball Super Movie"
     seat = session.get('seat')
 
+    # generate a random number for the ticket id
     ticket_id = random.randint(10000,99999)
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']
         email = request.form['email']
 
+        # Customer instance
         customer = Customer(name, surname, email, movie_selected)
 
-        cus_details = CustomerBooking(ticket_id, customer.get_cust_name, customer.get_cust_surname, customer.get_movie_selected)
+        # CustomerBooking instance to add to the database
+        cus_details = CustomerBooking(ticket_id, customer.get_cust_name, customer.get_cust_surname, customer.get_movie_selected, str(seat[0])+str(seat[1]))
 
+        # get the row to mark the seat selected with 1
         seats = SeatsM3.query.get_or_404(seat[0] + 1)
         
+        # get the column and mark the selected seat with 1
         if seat[1] == 1:
             seats.c1 = 1
         elif seat[1] == 2:
@@ -445,6 +479,8 @@ def checkout3():
         elif seat[1] == 8:
             seats.c8 = 1
 
+
+        # query and update the number of seats sold/available for this movie
         seat_numbers = Movies.query.get_or_404(movie_selected)
         arr_seat_numbers = str(seat_numbers).split('~')
         add_s = int(arr_seat_numbers[2]) + 1
@@ -453,17 +489,148 @@ def checkout3():
         seat_numbers.seats_available = sub_s
         seat_numbers.seats_sold = add_s
 
+
+        # add to the database and commit
         try:
             db.session.add(cus_details)
 
             db.session.commit()
 
-            return "Booked successfully. Your ticket id is " +  str(ticket_id) + " . Thank you!"
+            return render_template('thankyou.html', ticket_id=ticket_id)
         except:
             return "Error adding to the database"
 
     return render_template('checkout.html')
 
+
+# cancelling a tickect using ticket_id
+@app.route('/home/cancel', methods=['POST', 'GET'])
+def cancel():
+    if request.method == 'POST':
+        ticket_id = request.form['cancel']
+
+        
+        try:
+            # select the row to be deleted using the ticket id
+            delete = CustomerBooking.query.get_or_404(ticket_id)
+
+            # and select which movie is being deleted (helps with getting the seat to mark as available)
+            seat_indx = str(delete).split('~')[4]
+            movie = str(delete).split('~')[3]
+
+            seat = [int(seat_indx[0]), int(seat_indx[1])]
+
+            # update the seats
+            # use row and column to mark the available seat with 1 (the one that's being deleted)
+            if movie == "Jujutsu Kaisen: Zero":
+                seats = SeatsM1.query.get_or_404(seat[0] + 1)
+        
+                if seat[1] == 1:
+                    seats.c1 = 0
+                elif seat[1] == 2:
+                    seats.c2 = 0
+                elif seat[1] == 3:
+                    seats.c3 = 0
+                elif seat[1] == 4:
+                    seats.c4 = 0
+                elif seat[1] == 5:
+                    seats.c5 = 0
+                elif seat[1] == 6:
+                    seats.c6 = 0
+                elif seat[1] == 7:
+                    seats.c7 = 0
+                elif seat[1] == 8:
+                    seats.c8 = 0
+
+                # query and update the number of seats sold/available for this movie
+                seat_numbers = Movies.query.get_or_404(movie)
+                arr_seat_numbers = str(seat_numbers).split('~')
+                add_s = int(arr_seat_numbers[1]) + 1
+                sub_s = int(arr_seat_numbers[2]) - 1
+
+                seat_numbers.seats_available = add_s
+                seat_numbers.seats_sold = sub_s
+
+            elif movie == "Boku no Hero: World Hero's Mission":
+                seats = SeatsM2.query.get_or_404(seat[0] + 1)
+        
+                if seat[1] == 1:
+                    seats.c1 = 0
+                elif seat[1] == 2:
+                    seats.c2 = 0
+                elif seat[1] == 3:
+                    seats.c3 = 0
+                elif seat[1] == 4:
+                    seats.c4 = 0
+                elif seat[1] == 5:
+                    seats.c5 = 0
+                elif seat[1] == 6:
+                    seats.c6 = 0
+                elif seat[1] == 7:
+                    seats.c7 = 0
+                elif seat[1] == 8:
+                    seats.c8 = 0
+
+                # query and update the number of seats sold/available for this movie
+                seat_numbers = Movies.query.get_or_404(movie)
+                arr_seat_numbers = str(seat_numbers).split('~')
+                add_s = int(arr_seat_numbers[1]) + 1
+                sub_s = int(arr_seat_numbers[2]) - 1
+
+                seat_numbers.seats_available = add_s
+                seat_numbers.seats_sold = sub_s
+
+            elif movie == "Dragon Ball Super Movie":
+                seats = SeatsM3.query.get_or_404(seat[0] + 1)
+        
+                if seat[1] == 1:
+                    seats.c1 = 0
+                elif seat[1] == 2:
+                    seats.c2 = 0
+                elif seat[1] == 3:
+                    seats.c3 = 0
+                elif seat[1] == 4:
+                    seats.c4 = 0
+                elif seat[1] == 5:
+                    seats.c5 = 0
+                elif seat[1] == 6:
+                    seats.c6 = 0
+                elif seat[1] == 7:
+                    seats.c7 = 0
+                elif seat[1] == 8:
+                    seats.c8 = 0
+
+                # query and update the number of seats sold/available for this movie
+                seat_numbers = Movies.query.get_or_404(movie)
+                arr_seat_numbers = str(seat_numbers).split('~')
+                add_s = int(arr_seat_numbers[1]) + 1
+                sub_s = int(arr_seat_numbers[2]) - 1
+
+                seat_numbers.seats_available = add_s
+                seat_numbers.seats_sold = sub_s
+            
+
+            # delete from the table and commit
+            db.session.delete(delete)
+            db.session.commit()
+
+
+            return render_template('aftercancel.html')
+
+        except:
+            flash('The ticket id you have entered does not exist!')
+            return render_template('cancel.html')
+    
+
+    return render_template('cancel.html')
+
+# logout
+@app.route('/logout', methods=['GET'])
+def logout():
+
+    session.clear()
+
+    return render_template('logout.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -5,12 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width-device-width, initial-scale=1.0">
   <title>Akatsuki</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <img src="akatsuki.jpg">
+    <img src="{{ url_for('static', filename='/img/akatsuki.jpg') }}">
+    <p class="akagang">Booked successfully. Your ticket id is {{ ticket_id }}.</p>
     <p class="thanks">Thank you for purchasing a ticket!</p>
     <p class="akagang">Love the Akatsuki family</p>
-    <a class="aa" href="/index.html">Back to booking page</a>
+    <a class="aa" href="/home">Back to booking page</a>
 
 </body>
+
+</html>
