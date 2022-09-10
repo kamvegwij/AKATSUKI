@@ -1,0 +1,33 @@
+The process model we chose was the Waterfall model. 
+The team chose this model because the task at hand was well defined and we knew exactly what to do and how to do it. There was not
+a lot of changes to be done so we felt this model was the best. We didn't all have much experience in the framework and the frontend languages we
+were going to use so this was the worst part about the whole process because even though we had planned and modelled the software, we still had to learn to be 
+able to implement everything. The good part was that the team was focused and willing to learn so we managed to provide a quality project and met all our initial requirements and what
+we had planned and modelled in the beginning.
+
+Task Set:
+1. Do the designs for all the pages
+2. Do the UML diagrams
+3. Create the different classes specified in the UML diagrams.
+4. Install flask and all needed packages
+5. Develop a basic login and sign up page with login button and sign up button
+6. The backend team must link the login page to the sign up through a button
+7. Develop the booking pages and order confirmed page
+8. Link these two pages through a button and link the login page to the booking page through the login button
+9. Start with setting up the database now
+10. Test username and password validation to allow access to the booking page
+11. Now set up the booking class and relevant attributes in the database to handle buying and cancelling a ticket
+12. Have a last page that displays the users booking ID which they will use to cancel a ticket
+13. Complete the task report and finalise all documentation
+
+Milestones:
+1. Complete the UML diagrams
+2. Create a dummy test project
+3. Complete all pages in official project
+4. Ensure the server runs smoothly and does not crash
+5. Ensure that all pages link to each other respectively
+6. Store customer login details
+7. Customer must be able to buy a ticket, recieve a unique ID and then cancel the ticket
+   if they wish.
+8. Run successful final tests
+9. Complete all remaining documentation
